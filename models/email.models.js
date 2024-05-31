@@ -4,6 +4,8 @@ const emailSchmea = new Schema({
     companyName:  {
         type: String,
         required: true,
+        unique: true,
+        trim: true,
         maxLength: 40
     },
 
@@ -15,21 +17,25 @@ const emailSchmea = new Schema({
     firstEmail: {
         type: String,
         required: true,
+        unique: true,
         maxLength: 50
     },
 
     secondEmail: {
         type: String,
+        unique: true,
         maxLength: 50
     },
 
     thirdEmail: {
         type: String,
+        unique: true,
         maxLength: 50
     },
 
     carrersPage: {
         type: String,
+        maxLength: 50
     }
 
 }, {
