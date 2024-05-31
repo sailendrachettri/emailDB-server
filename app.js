@@ -7,6 +7,7 @@ const app = express();
 const PORT = process.env.PORT || 8000
 
 app.use('/api/auth/user', require('./routes/auth.routes'));
+app.use('/api/post/email', require('./routes/email.routes'));
 
 app.listen(PORT, ()=>{
     console.log("Listining at port ", PORT);
