@@ -25,7 +25,7 @@ router.post('/add', async(req, res) => {
             return res.status(409).json({success: false, message: "Details Already exist"});
         }
     
-        const docs = await Email.create({companyName, companyType, firstEmail, secondEmail, thirdEmail});
+        const docs = await Email.create({companyName, companyType, firstEmail, secondEmail, thirdEmail, carrerPage});
     
         res.status(200).json({success: true, message: "Record added successfully!", docs: docs})
     } catch (error) {

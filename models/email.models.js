@@ -33,7 +33,7 @@ const emailSchmea = new Schema({
         maxLength: 50
     },
 
-    carrersPage: {
+    carrerPage: {
         type: String,
         maxLength: 50
     }
