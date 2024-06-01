@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config({path: ['.env.dev', '.env']});
 require('./database');
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const PORT = process.env.PORT || 8000
 
