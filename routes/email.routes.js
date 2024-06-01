@@ -33,4 +33,15 @@ router.post('/add', async(req, res) => {
     }
 })
 
+router.get('/fetch', async(req, res)=>{
+    try {
+        const response = await Email.find();
+        res.status(200).json({success: true, emails: response});
+
+    } catch (error) {
+        res.status(500).json({success: false, message: "Internal server error", error: error.message});
+    }
+
+})
+
 module.exports = router
