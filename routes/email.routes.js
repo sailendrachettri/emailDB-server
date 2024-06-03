@@ -5,7 +5,6 @@ const router = express.Router();
 
 // ROUTE 1: add email to database
 router.post('/add', async(req, res) => {
-    console.log(req.body);
 
     try {
         const {companyName, companyType, firstEmail, secondEmail, thirdEmail, careerPage} = req.body;
