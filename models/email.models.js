@@ -33,7 +33,7 @@ const emailSchmea = new Schema({
         maxLength: 50
     },
 
-    carrerPage: {
+    careerPage: {
         type: String,
         maxLength: 50
     }

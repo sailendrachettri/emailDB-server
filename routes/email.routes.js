@@ -5,8 +5,10 @@ const router = express.Router();
 
 // ROUTE 1: add email to database
 router.post('/add', async(req, res) => {
+    console.log(req.body);
+
     try {
-        const {companyName, companyType, firstEmail, secondEmail, thirdEmail, carrerPage} = req.body;
+        const {companyName, companyType, firstEmail, secondEmail, thirdEmail, careerPage} = req.body;
     
         if(!(companyName && companyType && firstEmail)){
             return res.status(404).json({status: false, message: "Company name, type and email 1 required"});
@@ -25,7 +27,7 @@ router.post('/add', async(req, res) => {
             return res.status(409).json({success: false, message: "Details Already exist"});
         }
     
-        const docs = await Email.create({companyName, companyType, firstEmail, secondEmail, thirdEmail, carrerPage});
+        const docs = await Email.create({companyName, companyType, firstEmail, secondEmail, thirdEmail, careerPage});
     
         res.status(200).json({success: true, message: "Record added successfully!", docs: docs})
     } catch (error) {
