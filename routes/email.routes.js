@@ -16,8 +16,6 @@ router.post('/add', async(req, res) => {
         const exist = await Email.findOne({
             $or: [
                 {firstEmail},
-                {secondEmail},
-                {thirdEmail},
                 {companyName}
             ]
         })

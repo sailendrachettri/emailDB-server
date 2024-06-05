@@ -1,8 +1,10 @@
 const express = require('express');
 const cors = require('cors');
-// require('dotenv').config({path: ['.env.dev', '.env']}); // for development
-require('dotenv').config(); // for production
+require('dotenv').config({path: ['.env.dev', '.env']}); // for development
+// require('dotenv').config(); // for production
 require('./database');
+
+console.log(process.env.CLIENT_URL);
 
 const app = express();
 app.use(express.json());
