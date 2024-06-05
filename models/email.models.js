@@ -23,13 +23,11 @@ const emailSchmea = new Schema({
 
     secondEmail: {
         type: String,
-        unique: true,
         maxLength: 50
     },
 
     thirdEmail: {
         type: String,
-        unique: true,
         maxLength: 50
     },
 
