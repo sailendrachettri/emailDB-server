@@ -28,7 +28,7 @@ router.post('/add', async(req, res) => {
     
         res.status(200).json({success: true, message: "Record added successfully!", docs: docs})
     } catch (error) {
-        res.status(500).json({success: false, message: "Internal server error", error: error.message});
+        res.status(500).json({success: false, message: "Not able to add record", error: error.message});
     }
 })
 
