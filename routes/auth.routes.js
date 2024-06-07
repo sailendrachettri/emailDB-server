@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user.models');
 const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 const router = express.Router();
 
@@ -42,15 +43,50 @@ router.post('/login', async(req, res)=>{
         return res.status(404).json({success: false, message: "User doesn't exist"});
     }
 
-    console.log(findUser);
-
     const comparePassword = bcryptjs.compareSync(password, findUser.password);
 
     if(!comparePassword){
         return  res.status(400).json({success: false, message: "Invalid credentials"});
     }
 
-    res.status(200).json({success: true, message: "Logged in successful", findUser});
+    const payload = {
+        username
+    };
+
+    const jwt_token = jwt.sign(payload, process.env.JWT_SECRET);
+
+    res.cookie('jwt_token', jwt_token, {sameSite: 'none', secure: true}).status(200).json({success: true, message: "Logged in successful", username: findUser.username});
+})
+
+// ROUTE 3: GET USER PROFILE
+router.get('/profile', async(req, res)=>{
+    
+    try {
+        const {jwt_token} = req.cookies;
+        const userInfo = jwt.verify(jwt_token, process.env.JWT_SECRET);
+        res.status(200).json({success: true, message: "Userinfo fetch successfully", userInfo});
+        
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({success: false, message: "Not able to fetch userinfo", error: error.message});
+    }
+})
+
+// ROUTE 4: handle logout
+router.post('/logout', (_, res)=>{
+    try {
+
+        res.clearCookie('jwt_token', {
+            sameSite: 'none',
+            secure: true
+        });
+
+        res.status(200).json({success: true, message: "Logout successful"});
+        
+    } catch (error) {
+        console.log("logout err: ", error.message);
+        res.status(500).json({success: false, message: "Not able to logout", error: error.message});
+    }
 })
 
 module.exports = router

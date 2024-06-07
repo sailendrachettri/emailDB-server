@@ -1,17 +1,14 @@
 const express = require('express');
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 // require('dotenv').config({path: ['.env.dev', '.env']}); // for development
 require('dotenv').config(); // for production
 require('./database');
-
-console.log(process.env.CLIENT_URL);
-
 const app = express();
+
+app.use(cookieParser());
 app.use(express.json());
-app.use(cors({
-    origin: process.env.CLIENT_URL,
-    credentials: true
-}));
+app.use(cors({origin: process.env.CLIENT_URL, credentials: true}));
 
 const PORT = process.env.PORT || 8000
 
