@@ -56,7 +56,7 @@ router.post('/login', async(req, res)=>{
     
         const jwt_token = jwt.sign(payload, process.env.JWT_SECRET);
     
-        res.cookie('jwt_token', jwt_token, {sameSite: 'none', secure: true}).status(200).json({success: true, message: "Logged in successful", username: findUser.username});
+        res.cookie('jwt_token', jwt_token, {sameSite: 'none', secure: true, maxAge: 24 * 60 * 60 * 1000}).status(200).json({success: true, message: "Logged in successful", username: findUser.username});
     } catch (error) {
         console.log(error.message);
         res.status(500).json({success: false, message: "Not abel to login", error: error.message});
