@@ -14,6 +14,12 @@ const emailSchmea = new Schema({
         required: true,
     },
 
+    companyLocation: {
+        type: String,
+        default: "",
+        trim: true,
+    },
+
     firstEmail: {
         type: String,
         required: true,
