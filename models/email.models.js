@@ -37,6 +37,19 @@ const emailSchmea = new Schema({
         maxLength: 50
     },
 
+    mobile1:{
+        type: String,
+        maxLength: 10,
+        minLength: 10,
+        trim: true
+    },
+    mobile2:{
+        type: String,
+        maxLength: 10,
+        minLength: 10,
+        trim: true
+    },
+
     careerPage: {
         type: String,
         maxLength: 50
